@@ -1,0 +1,31 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1em 2em 2em 2em;
+}
+
+.product-container {
+    display: block;
+    height: 30em;
+    width: 20em;
+    overflow: hidden;
+    margin: 0 2em 2em 0;
+    box-shadow: 5px 5px 10px;
+}
+
+.product-container > img {
+    height: 20em;
+    object-fit: contain;
+}
+
+.product-container > .description {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    padding: 0.5em 0 0.5em 0.5em;
+}
+
+.product-container > .to-cart {
+    margin: 0 0 0 0.5em;
+}

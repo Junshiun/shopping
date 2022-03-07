@@ -1,0 +1,138 @@
+#header {
+    position: fixed;
+    width: 100%;
+    height: fit-content;
+    background-color: black;
+    color: white;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 10% 80% 10%;
+    z-index: 1;
+}
+
+#header #title {
+    margin: 0.5em 0 0.5em 0.5em;
+}
+
+#title:hover {
+    cursor: pointer;
+}
+
+#header #form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em 0.5em 0.5em;
+}
+
+#header #form > input {
+    width: 50%;
+}
+
+#header #form > #search-btn {
+    margin-left: 0.5em;
+}
+
+#header #cart-container {
+    display: flex;
+    justify-content: center;
+    margin-right: 0.5em;
+}
+
+#cart-container .cart-icon {
+    position: relative;
+}
+
+.cart-icon .amount {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+#cart-container .dropdown {
+    position: relative;
+}
+
+.dropdown .arrow {
+    margin-left: 0.4em;
+    margin-right: 0.4em;
+    transform: rotate(180deg);
+    transition: transform 0.3s linear;
+}
+
+.dropdown .arrow.show {
+    transform: rotate(0deg);
+}
+
+.dropdown .cart-box {
+    position: absolute;
+    top: 2em;
+    right: 1em;
+    /*max-height: 1000px;*/
+
+    width: 50vw;
+    background-color: white;
+
+    transition: height 0.3s;
+    max-height: 80vh !important;
+    overflow: hidden;
+}
+
+#measure-height {
+    height: fit-content;
+    box-sizing: border-box;
+    margin: 0.5em 0.5em 0.5em 0.5em;
+    max-height: calc(80vh - 3em);
+    overflow-y: auto;
+}
+
+.cart-box.hide {
+    display: block;
+    overflow: hidden;
+    height: 0;
+    padding: 0;
+}
+ 
+.cart-box .empty-box {
+    color: black;
+}
+
+.cart-box .item-box {
+    display: flex;
+    width: 99%;
+    margin-bottom: 0.5em;
+}
+
+.item-box > img {
+    width: 30%;
+    object-fit: cover;
+}
+
+.item-box > .description {
+    font-size: 0.9em;
+    width: 70%;
+    padding: 0.2em 0.2em 0.2em 0.2em;
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.item-box > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5em;
+    border: none;
+    background: orange;
+    font-size: 0.9em;
+}
+
+.dropdown .checkout {
+    width: 100%;
+    position: absolute;
+    height: 2em;
+    bottom: 0;
+    background-color: #2986cc;
+    border: none;
+    color: white;
+}

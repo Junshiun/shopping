@@ -1,0 +1,95 @@
+#cart{
+    display: block;
+    padding-top: 5em;
+}
+
+#cart #cart-content {
+    display: block;
+    max-width: 95%;
+    overflow: hidden;
+    margin-left: 1em;
+}
+
+#cart-content .item-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.item-container > img {
+    width: 30%;
+    object-fit: cover;
+}
+
+.item-container .item-details {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+.item-details > .item-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.item-details .quantity-box {
+    display: flex;
+    justify-content: right;
+    margin-top: 1em;
+}
+
+.quantity-box .minus, .quantity-box .plus {
+    background: none;
+    border: none;
+}
+
+.quantity-box .quantity {
+    text-align: center;
+    width: 2em;
+    margin: 0 10px 0 10px;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.item-container > .delete-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
+
+.delete-column > button {
+    background: none;
+    border: none;
+}
+
+.item-container .item-sum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+}
+
+#checkout-content {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    padding: 1em 1em 1em 1em;
+    margin-left: 1em;
+    width: 90%;
+}
+
+.total {
+    align-self: center;
+    margin-bottom: 1em;
+}
