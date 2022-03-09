@@ -6,9 +6,9 @@ import { ADD_TO_CART, REMOVE_FROM_CART } from "../context/Reducer.js";
 import { AiFillStar } from "react-icons/ai"
 
 export const Products = () => {
-    const {state, state: {products, cart}, dispatch, filter} = CartState();
+    const {state, state: {products, cart, fetched_products}, dispatch, filter} = CartState();
 
-    //console.log({...state});
+    //console.log(products);
     //console.log(products);
 
     const filtered_products = () => {
@@ -41,7 +41,7 @@ export const Products = () => {
             {filtered_products().map((item) => {
                 return (
                     <div className="product-container" key={item.id}>
-                        <img src={item.image} alt={item.name}></img>
+                        <div className="product-image"><img src={item.image} alt={item.name}></img></div>
                         <div className="description">
                             <span>{item.name}</span>
                             <span>RM {item.price}</span>

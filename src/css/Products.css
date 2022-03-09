@@ -2,20 +2,30 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 1em 2em 2em 2em;
+    margin: 1em 2em 0 2em;
 }
 
 .product-container {
-    display: block;
-    height: 30em;
+    display: flex;
+    flex-direction: column;
+    height: 33em;
     width: 20em;
     overflow: hidden;
     margin: 0 2em 2em 0;
     box-shadow: 5px 5px 10px;
 }
 
-.product-container > img {
-    height: 20em;
+.product-container > .product-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em 1em 1em 1em;
+    height: 60%;
+    overflow: hidden;
+}
+
+.product-image > img {
+    height: 100%;
     object-fit: contain;
 }
 
@@ -23,9 +33,10 @@
     display: flex;
     flex-direction: column;
     height: fit-content;
-    padding: 0.5em 0 0.5em 0.5em;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    flex-grow: 1;
 }
 
 .product-container > .to-cart {
-    margin: 0 0 0 0.5em;
+    margin: 0 0 0.5em 0.5em;
 }

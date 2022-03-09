@@ -6,11 +6,27 @@
     width: 13em;
     height: fit-content;
     padding: 1em 1em 0 1em;
-    border: solid 1px black;
+    background-color: var(--bb-blue4);
+    border-radius: 10px;
 }
 
 #filter .option-box {
     margin-bottom: 1em;
+    color: var(--bb-blue0);
+}
+
+#filter .clear-box {
+    margin: 1em 0 1em 0;
+    color: var(--bb-blue0);
+}
+
+.clear-box > button {
+    width: 100%;
+    text-align: center;
+    background-color: black;
+    border: none;
+    color: var(--bb-blue0);
+    padding: 0.5em 0 0.5em 0;
 }
 
 #filter label {

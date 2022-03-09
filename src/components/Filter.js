@@ -29,7 +29,7 @@ export const Filter = () => {
                 <label htmlFor="fd">fast delivery only</label>
             </div>
             <Rating rate={byratings} rate_function={(i) => {filterdispatch({type: SORT_BY_RATING, ratings: i})}}/>
-            <div className="option-box">
+            <div className="clear-box">
                 <button onClick={() => filterdispatch({type: CLEAR_FILTER})}>clear filters</button>
             </div>
         </div>

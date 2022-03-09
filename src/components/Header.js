@@ -3,13 +3,13 @@ import { CgShoppingCart } from "react-icons/cg"
 import { RiArrowDownSLine} from "react-icons/ri"
 import { BsSearch} from "react-icons/bs"
 import {Link} from "react-router-dom"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams} from 'react-router-dom';
 import { CartState } from "../context/Context"
 import { REMOVE_FROM_CART } from "../context/Reducer"
 import { useEffect, useState } from 'react';
 
 const Header = () => {
-    const {state: {cart}, dispatch} = CartState();
+    const {state: {cart, category}, dispatch} = CartState();
 
     const [cartbox, setcartbox] = useState("hide");
 
@@ -34,12 +34,23 @@ const Header = () => {
             document.getElementById("cart-box").style.height = 0 + "px";
     })
 
+    function handleCategories(e) {
+        history("/" + "?category=" + e.target.value);
+        history(0);
+    }
+
     return (
         <header id="header">
-            <h1 id="title" onClick={() => history("/")}>Shop</h1>
+            <h1 id="title" onClick={() => {history("/"); history(0)}}>Shop</h1>
             <form id="form">
-                <input type="text" placeholder="search"></input>
-                <BsSearch id="search-btn" color="white"></BsSearch>
+                <select value={category} onChange={handleCategories}>
+                    <option value="none" disabled></option>
+                    <option value="electronics">electronics</option>
+                    <option value="jewelery">jewelery</option>
+                    <option value="men's clothing">men's clothing</option>
+                    <option value="women's clothing">women's clothing</option>
+                </select>
+                {/*<BsSearch id="search-btn" color="white"></BsSearch>*/}
             </form>
             <div id="cart-container">
                 <div className="cart-icon">

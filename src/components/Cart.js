@@ -1,8 +1,9 @@
 import "../css/Cart.css"
 import { CartState } from "../context/Context";
 import { RiDeleteBinFill } from "react-icons/ri";
-import { ADD_QUANTITY, MINUS_QUANTITY, CHANGE_QUANTITY_KEY, CHANGE_QUANTITY_BLUR, REMOVE_FROM_CART} from "../context/Reducer";
+import { ADD_QUANTITY, MINUS_QUANTITY, CHANGE_QUANTITY_KEY, CHANGE_QUANTITY_BLUR, REMOVE_FROM_CART, UPDATE_SUM} from "../context/Reducer";
 import { useState } from "react"; 
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
     return (
@@ -49,10 +50,13 @@ const Cart_content = () => {
 }
 
 const Checkout = () => {
-    const {state: {cart}, dispatch} = CartState();
+    const {state: {cart, status:{total}}, dispatch} = CartState();
 
-    let total = cart.reduce((total, currentValue) => {
-    return (total + currentValue.price * currentValue.quantity)}, 0);
+    const nav = useNavigate();
+
+    /*let total = cart.reduce((total, currentValue) => {
+        return (total + currentValue.price * currentValue.quantity)
+    }, 0)*/
 
     /*{cart.map(item => {
         return (
@@ -65,7 +69,7 @@ const Checkout = () => {
 
     return (
         (cart.length>0)? (<div id="checkout-content"><span className="total">Total: RM {total}</span>
-        <button className="btn btn-primary">Checkout</button></div>):(<div id="checkout-content"><span className="total">your cart is empty</span></div>)
+        <button className="btn btn-primary" onClick={() => nav("../paymentform")}>Checkout</button></div>):(<div id="checkout-content"><span className="total">your cart is empty</span></div>)
     )
 }
 

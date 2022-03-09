@@ -11,7 +11,7 @@
 }
 
 #header #title {
-    margin: 0.5em 0 0.5em 0.5em;
+    margin: 8px 0 8px 8px;
 }
 
 #title:hover {
@@ -22,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0.5em 0.5em 0.5em;
+    margin: 8px 8px 8px;
 }
 
 #header #form > input {
@@ -30,13 +30,13 @@
 }
 
 #header #form > #search-btn {
-    margin-left: 0.5em;
+    margin-left: 8px;
 }
 
 #header #cart-container {
     display: flex;
     justify-content: center;
-    margin-right: 0.5em;
+    margin-right: 8px;
 }
 
 #cart-container .cart-icon {
@@ -66,8 +66,8 @@
 
 .dropdown .cart-box {
     position: absolute;
-    top: 2em;
-    right: 1em;
+    top: 32px;
+    right: 16px;
     /*max-height: 1000px;*/
 
     width: 50vw;
@@ -100,18 +100,19 @@
 .cart-box .item-box {
     display: flex;
     width: 99%;
-    margin-bottom: 0.5em;
+    height: 10em;
+    margin-bottom: 1em;
 }
 
 .item-box > img {
     width: 30%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .item-box > .description {
     font-size: 0.9em;
     width: 70%;
-    padding: 0.2em 0.2em 0.2em 0.2em;
+    padding: 0.2em 0.2em 0.2em 0.4em;
     display: flex;
     flex-direction: column;
     color: black;

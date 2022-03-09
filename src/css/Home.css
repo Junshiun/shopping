@@ -1,4 +1,13 @@
+:root {
+    --bb-blue0: #b3cde0;
+    --bb-blue1: #6497b1;
+    --bb-blue2: #005b96;
+    --bb-blue3: #03396c;
+    --bb-blue4: #011f4b;
+}
+
 #home {
     display: flex;
     padding-top: 5em;
 }
+
