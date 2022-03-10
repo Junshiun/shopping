@@ -1,13 +1,13 @@
 import { createContext, useContext , useReducer, useState, useEffect} from "react";
 import faker from "@faker-js/faker";
 import { CartReducer , FilterReducer, FETCH_DATA, FETCH_URL} from './Reducer';
-import { useSearchParams } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 export const Cart = createContext();
 faker.seed(99);
 
 const Context = ({children}) => {
+
 
     const [loading, setloading] = useState("loading");
 

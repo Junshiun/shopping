@@ -1,12 +1,11 @@
-#footer {
-    margin-top: 16px;
-}
-
 .footer-container {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70px;
     background-color: black;
-    color: white;
+    color: #ffffff;
+    bottom: -70px;
+    width: 100%;
 }

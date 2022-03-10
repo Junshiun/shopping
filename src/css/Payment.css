@@ -12,6 +12,7 @@
     background-color: var(--bb-blue4);
     padding: 1.5em 1.5em 1.5em 1.5em;
     border-radius: 10px 10px 10px 10px;
+    margin-bottom: 3em;
 }
 
 .form-group {
@@ -26,6 +27,8 @@
     padding: 0 0 0 5px;
     margin-top: 0.5em;
     background-color: white;
+    border-radius: 5px;
+    border: none;
 }
 
 .form-group-s {

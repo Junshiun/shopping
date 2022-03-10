@@ -6,6 +6,11 @@
     --bb-blue4: #011f4b;
 }
 
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
 #home {
     display: flex;
     padding-top: 5em;
