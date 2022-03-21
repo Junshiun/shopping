@@ -4,6 +4,8 @@
     --bb-blue2: #005b96;
     --bb-blue3: #03396c;
     --bb-blue4: #011f4b;
+    --header-height: 5em;
+    --footer-height: 80px;
 }
 
 body {
@@ -13,6 +15,6 @@ body {
 
 #home {
     display: flex;
-    padding-top: 5em;
+    padding-top: var(--header-height);
 }
 

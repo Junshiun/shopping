@@ -1,6 +1,6 @@
 #payment {
     display: flex;
-    padding-top: 5em;
+    padding-top: var(--header-height);
     width: 100%;
     height: 100%;
     justify-content: center;
@@ -8,11 +8,11 @@
 }
 
 #payment-form {
-    width: 70%;
+    width: 380px;
     background-color: var(--bb-blue4);
     padding: 1.5em 1.5em 1.5em 1.5em;
     border-radius: 10px 10px 10px 10px;
-    margin-bottom: 3em;
+    margin-bottom: var(--footer-height);
 }
 
 .form-group {

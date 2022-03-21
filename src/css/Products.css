@@ -2,7 +2,13 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 1em 2em 0 2em;
+    margin: 1em 2em var(--footer-height) 2em;
+}
+
+@media only screen and (max-width: 700px) {
+    .main-container {
+        margin: 3em 2em var(--footer-height) 2em;
+    }
 }
 
 .product-container {
@@ -12,7 +18,14 @@
     width: 20em;
     overflow: hidden;
     margin: 0 2em 2em 0;
-    box-shadow: 5px 5px 10px;
+    border: 3px solid #eeeeee;
+    /*box-shadow: 5px 5px 10px;*/
+}
+
+@media only screen and (max-width: 700px) {
+    .product-container {
+        margin: 0 0 2em 0;
+    }
 }
 
 .product-container > .product-image {

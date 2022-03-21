@@ -69,7 +69,7 @@ const Checkout = () => {
 
     return (
         (cart.length>0)? (<div id="checkout-content"><span className="total">Total: RM {total}</span>
-        <button className="btn btn-primary" onClick={() => nav("../paymentform")}>Checkout</button></div>):(<div id="checkout-content"><span className="total">your cart is empty</span></div>)
+        <button className="btn btn-primary" onClick={() => nav("/shopping/paymentform")}>Checkout</button></div>):(<div id="checkout-content"><span className="total">your cart is empty</span></div>)
     )
 }
 

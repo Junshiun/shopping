@@ -1,13 +1,89 @@
+#filter-wrapper {
+    flex-shrink: 0;
+    width: 15em;
+}
+
 #filter {
+    position: sticky;
+    top: 7.5em;
     flex-shrink: 0;
     flex-grow: 0;
-    margin: 1em 0 1em 1em;
+    margin: 1em 0 1em 2em;
     display: block;
     width: 13em;
-    height: fit-content;
-    padding: 1em 1em 0 1em;
+    height: fit-content;  
     background-color: var(--bb-blue4);
     border-radius: 10px;
+}
+
+.filter-padding {
+    padding: 1em 1em 0 1em;
+}
+
+@media only screen and (max-width: 700px) {
+    #home {
+        padding-top: 4em;
+        flex-wrap: wrap;
+    }
+
+    #filter-wrapper {
+        position: fixed;
+        width: 100%;
+        background-color: var(--bb-blue4);
+        z-index: 1;
+    }
+
+    #filter {
+        position: static;
+        width: 100%;
+        margin: 0 0 0 0;
+        border-radius: 0;
+        height: 275px;
+        transition: height 0.3s linear;
+        overflow: hidden;
+    }
+
+    #filter.collapse {
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .filter-status {
+        display: none !important;
+    }
+
+    .filter-status-mobile {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        height: 30px;
+        bottom: -30px;
+        left: 0;
+        width: 100%;
+        background-color: black;
+        color: white;
+    }
+
+    .filter-status-mobile:hover {
+        cursor: pointer;
+    }
+
+    /*
+    .expand .filter-arrow {
+        transform: rotate(180deg);
+    }
+    */
+
+    .clear-box > button {
+        margin-bottom: 0;
+    }
+}
+
+@media only screen and (min-width: 701px) {
+    .filter-status-mobile {
+        display: none;
+    }
 }
 
 #filter .option-box {
@@ -27,8 +103,25 @@
     border: none;
     color: var(--bb-blue0);
     padding: 0.5em 0 0.5em 0;
+    margin-bottom: 1em;
 }
 
 #filter label {
     margin-left: 1em;
+}
+
+.filter-status {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: -30px;
+    right: 0;
+    background-color: black;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.filter-arrow {
+    margin: 0 10px 0 10px;
 }

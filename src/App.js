@@ -13,11 +13,11 @@ function App() {
       <Contex>
       <Header/>
       <Routes>
-        <Route path="/" exact element={<Home />}>
+        <Route path="/shopping" exact element={<Home />}>
         </Route>
-        <Route path="/cart" exact element={<Cart/>}>
+        <Route path="/shopping/cart" exact element={<Cart/>}>
         </Route>
-        <Route path="/paymentform" exact element={<StripeContainer />}>
+        <Route path="/shopping/paymentform" exact element={<StripeContainer />}>
         </Route>
       </Routes>
       <Footer />

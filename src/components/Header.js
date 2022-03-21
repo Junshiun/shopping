@@ -52,7 +52,7 @@ const Header = () => {
 
     function handleCategories(e) {
         if (e.target.getAttribute("value") !== category){
-            history("/" + "?category=" + e.target.getAttribute("value"));
+            history("/shopping" + "?category=" + e.target.getAttribute("value"));
             history(0);
         }
     }
@@ -63,9 +63,10 @@ const Header = () => {
 
     return (
         <header id="header">
-            <h1 id="title" onClick={() => {history("/"); history(0)}}>Shop</h1>
+            <h1 id="title" onClick={() => {history("/shopping"); history(0)}}>Shop</h1>
             <form id="form">
-                {(location === "/")?
+                {(location === "/shopping" ||
+                  location === "/shopping/")?
                 <div onClick={handleClass} id="categories" ref={menu}>
                     <div className="categories-main">
                         {category==="none"? "Categories": category}
@@ -112,7 +113,7 @@ const Header = () => {
                                     <button onClick={() => dispatch({type: REMOVE_FROM_CART, product: {id: element.id}})}>remove</button>
                                 </div>
                             )
-                        })}</div><button className="checkout" onClick={() => history("/Cart")}>go to cart</button></div>): (<div id="cart-box" className={"cart-box " + cartbox}><div id="measure-height"><div className="empty-box">your cart is empty</div></div></div>)}
+                        })}</div><button className="checkout" onClick={() => history("/shopping/Cart")}>go to cart</button></div>): (<div id="cart-box" className={"cart-box " + cartbox}><div id="measure-height"><div className="empty-box">your cart is empty</div></div></div>)}
                 </div>
             </div>
         </header>

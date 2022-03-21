@@ -66,9 +66,11 @@ const Context = ({children}) => {
 
     const [state, dispatch] = useReducer(CartReducer,{
         products: [],
-        cart:  JSON.parse(localStorage.getItem('cart')),
+        cart:  (JSON.parse(localStorage.getItem('cart'))===null)? []:JSON.parse(localStorage.getItem('cart')),
+
         //useState(localStorage.getItem('cart')),
         //fetched_products: []
+        
         status: {total: JSON.parse(localStorage.getItem('total')),
                 },
         category: "none"

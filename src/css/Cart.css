@@ -1,6 +1,7 @@
 #cart{
     display: block;
-    padding-top: 5em;
+    padding-top: var(--header-height);
+    padding-bottom: var(--footer-height);
 }
 
 #cart #cart-content {

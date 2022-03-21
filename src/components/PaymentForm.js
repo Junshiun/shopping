@@ -64,15 +64,15 @@ export default function PaymentForm () {
             type: "card",
             card: elements.getElement(CardNumberElement),
             billing_details: {
-                address: {
+                /*address: {
                   city: "San Francisco",
                   country: "US",
                   line1: "1234 Fake Street",
                   line2: null,
                   postal_code: "94102",
                   state: "CA"
-                },
-                email: "jenny@example.com",
+                },*/
+                email: form.elements["email"].value,
                 name: form.elements["name"].value,
             },
         })
@@ -80,8 +80,8 @@ export default function PaymentForm () {
         if (!error) {
             try {
                 const {id} = paymentMethod;
-                const response = await axios.post("http://localhost:4000/payment", {
-                    amount: total,
+                const response = await axios.post("https://shopping-server-side.herokuapp.com/payment", {
+                    amount: total*100,
                     id
                 })
 
