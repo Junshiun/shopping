@@ -4,6 +4,8 @@ import { CartState } from "../context/Context";
 import { CardElement, CardNumberElement, CardExpiryElement, CardCvcElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { CLEAR_CART } from "../context/Reducer";
+import { AiFillCloseSquare, AiOutlineLoading3Quarters } from "react-icons/ai"
+import { FaAngleDoubleRight } from "react-icons/fa"
 
 const cardNumberElementOptions = {
     style: {
@@ -38,7 +40,10 @@ const cvcElementOptions = {
 
 export default function PaymentForm () {
     const {state: {cart, status: {total, paid}}, dispatch} = CartState();
+    const [paymentSubmit, setPaymentSubmit] = useState(false);
     const [success, setsuccess] = useState(false);
+    const [paymentFail, setPaymentFail] = useState(false);
+    const [showGuide, setShowguide] = useState(true);
     const stripe = useStripe();
     const elements = useElements();
 
@@ -56,9 +61,11 @@ export default function PaymentForm () {
     const handlesubmit = async (event) => {
         event.preventDefault();
         
-        let form = document.getElementById("payment-form")
+        let form = document.getElementById("payment-form");
 
-        console.log(form.elements["name"].value);
+        //console.log(form.elements["name"].value);
+
+        setPaymentSubmit(true);
 
         const {error, paymentMethod} = await stripe.createPaymentMethod({
             type: "card",
@@ -88,55 +95,101 @@ export default function PaymentForm () {
                 if (response.data.success) {
                     console.log("Success payment");
                     setsuccess(true);
+                    setPaymentSubmit(false);
                     dispatch({type: CLEAR_CART})
+                }
+                else {
+                    setPaymentFail(true);
+                    setPaymentSubmit(false);
                 }
             }
             catch (error) {
-                console.log("Error: ", error)
+                setPaymentFail(true);
+                setPaymentSubmit(false);
             }
         }
         else {
-            console.log(error.message)
+            alert(error.message);
+            setPaymentSubmit(false);
         }
     }
 
     return (
-        <div id="payment">
-            {!success? ((cart.length>0)?
+        <div className="paymentMain">
+            <div id="payment">
+                {!success? ((cart.length>0)?
 
-            (<form onSubmit={handlesubmit} id="payment-form">
-                <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input name="name" className="form-input" required></input>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input name="email" type="email" className="form-input" required></input>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="card-number">Card Number</label>
-                    <div className="form-input">
-                        <CardNumberElement options={cardNumberElementOptions}/>
+                (<form onSubmit={handlesubmit} id="payment-form">
+                    <div className="form-group">
+                        <label htmlFor="name">Name</label>
+                        <input name="name" className="form-input" required></input>
                     </div>
-                </div>
-                <div className="form-group-s">
-                    <div className="group-s">
-                        <label htmlFor="expiry">Expiry Date</label>
-                        <div className="form-input-s">
-                            <CardExpiryElement id="expiry" options={expiryElementOptions}/>
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input name="email" type="email" className="form-input" required></input>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="card-number">Card Number</label>
+                        <div className="form-input">
+                            <CardNumberElement options={cardNumberElementOptions}/>
                         </div>
                     </div>
-                    <div className="group-s">
-                        <label htmlFor="cvc">CVC</label>
-                        <div className="form-input-s">
-                            <CardCvcElement id="cvc" options={cvcElementOptions}/>
+                    <div className="form-group-s">
+                        <div className="group-s">
+                            <label htmlFor="expiry">Expiry Date</label>
+                            <div className="form-input-s">
+                                <CardExpiryElement id="expiry" options={expiryElementOptions}/>
+                            </div>
+                        </div>
+                        <div className="group-s">
+                            <label htmlFor="cvc">CVC</label>
+                            <div className="form-input-s">
+                                <CardCvcElement id="cvc" options={cvcElementOptions}/>
+                            </div>
                         </div>
                     </div>
+                    {paymentSubmit? 
+                    <div className="paymentProcessing" disabled>
+                        <AiOutlineLoading3Quarters className="loadingIcon"></AiOutlineLoading3Quarters>
+                        Processing ...
+                    </div>
+                    :
+                    <button className="pay-button" type="submit">Pay RM{total}</button>
+                    }
+                </form>):"your cart is empty")
+                : 
+                "Order Confirmed"}
+            </div>
+            {(cart.length>0)?
+            <div className={"guide " + ((showGuide==true)? "showGuide":"hideGuide")}>
+                <div className="guideContent">
+                    <p>Hi, as this page is for demo purpose, please use the testing card number to proceed with payment:</p>
+                    <ul>
+                        <li>Name: Your Name</li>
+                        <li>Email: Any Email</li>
+                        <li>Card Number: 4242 4242 4242 4242</li>
+                        <li>Expiry Date: Any Future Date</li>
+                        <li>CVC: Any 3 Digits</li>
+                    </ul>
+                        <div className="closeGuide" onClick={() => {setShowguide(!showGuide)}}>
+                        <AiFillCloseSquare fontSize="32px"></AiFillCloseSquare>
+                    </div>
                 </div>
-                <button className="pay-button" type="submit">Pay RM{total}</button>
-            </form>):"your cart is empty")
-            : 
-            "you just bought a thing"}
+                <div className="expandGuide" onClick={() => {setShowguide(!showGuide)}}>
+                            <FaAngleDoubleRight fontSize="24px"></FaAngleDoubleRight>
+                </div>
+            </div>
+            :
+            <div></div>
+            }
+            <div className={"paymentFail " + ((paymentFail==true)? "showFail":"hideFail")}>
+                <div className="failContent">
+                    <p>Payment unsuccessfull, please try again</p>
+                    <div className="failClose" onClick={() => {setPaymentFail(false)}}>
+                        <AiFillCloseSquare fontSize="16px"></AiFillCloseSquare>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
