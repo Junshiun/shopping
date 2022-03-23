@@ -17,7 +17,7 @@ const Header = () => {
 
     const history = useNavigate();
 
-    const menu = useRef(null);
+    const menu = useRef();
 
     const location = useLocation().pathname;
 
@@ -32,7 +32,7 @@ const Header = () => {
         }
     }
 
-    const closeOpenMenus = (e)=>{
+    const closeOpenMenus = (e) => {
         if(!menu.current.contains(e.target)){
           document.getElementById("options").classList.add("hide")
         }

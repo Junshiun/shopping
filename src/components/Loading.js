@@ -5,7 +5,12 @@ export const Loading = () => {
 
     return (
         <div className="loading">
-            is loading...
+            loading...
+            <div className="dotsBox">
+                <div className="dotOne"></div>
+                <div className="dotTwo"></div>
+                <div className="dotThree"></div>
+            </div>
         </div>
     );
 }

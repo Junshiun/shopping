@@ -2,5 +2,58 @@
     margin: 5em 2em 0 2em;
     width: 100%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dotsBox {
+    position: relative;
+    width: 100px;
+    height: 10px;
+    display: flex;
+    margin-top: 20px;
+}
+
+.dotOne, .dotTwo, .dotThree {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: black;
+    top: 0;
+    opacity: 0;
+    animation: dotAnimate 2.5s infinite ease-out;
+}
+
+.dotOne {
+    right: 100px;
+    animation-delay: .5s;
+}
+
+.dotTwo {
+    right: 50px;
+    animation-delay: .25s;
+}
+
+.dotThree {
+    right: 0px;
+}
+
+@keyframes dotAnimate {
+    0% {
+        transform: translateX(-1000%);
+        opacity: 0;
+    }
+    30% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    80% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
 }

@@ -38,7 +38,7 @@ export const Filter = () => {
                     <div className={((filter_status===true)? "expand":"") + " filter-status"} onClick={() => {setfilter(!filter_status); console.log(filter_status)}}><RiFilter3Fill className="filter-arrow" color="white"  fontSize="20px" ></RiFilter3Fill>Filter</div>
                 </div>
             </div>
-            <div className={((filter_status===true)? "expand":"") + " filter-status-mobile"} onClick={() => {setfilter(!filter_status); console.log(filter_status)}}><RiFilter3Fill className="filter-arrow" color="white"  fontSize="20px" ></RiFilter3Fill>Filter</div>
+            <div className={((filter_status===true)? "expand":"") + " filter-status-mobile"} onClick={() => {setfilter(!filter_status)}}><RiFilter3Fill className="filter-arrow" color="white"  fontSize="20px" ></RiFilter3Fill>Filter</div>
         </div>
     )
 }

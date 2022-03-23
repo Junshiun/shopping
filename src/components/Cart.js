@@ -36,12 +36,14 @@ const Cart_content = () => {
                                 <button className="plus" onClick={() => dispatch({type: ADD_QUANTITY, product: {id: item.id}})}>+</button>
                             </div>
                         </div>
+                    <div className="columnForMobile">
                     <div className="delete-column">
                         <button onClick={() => dispatch({type: REMOVE_FROM_CART, product: {id: item.id}})}>
                             <RiDeleteBinFill fontSize="1.5em"></RiDeleteBinFill>
                         </button>
                     </div>
                     <div className="item-sum">RM {eval(item.price*item.quantity)}</div>
+                    </div>
                 </div>
                 )}
             )}

@@ -1,5 +1,5 @@
 import "../css/Payment.css"
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useLayoutEffect} from "react";
 import { CartState } from "../context/Context";
 import { CardElement, CardNumberElement, CardExpiryElement, CardCvcElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
@@ -11,6 +11,17 @@ const cardNumberElementOptions = {
     style: {
       base: {
         fontSize: '16px',
+        lineHeight: "2em",
+        letterSpacing: "0.5em",
+        textAlign: "center"
+      },
+    },
+};
+
+const cardNumberElementOptionsMobile = {
+    style: {
+      base: {
+        fontSize: '12px',
         lineHeight: "2em",
         letterSpacing: "0.5em",
         textAlign: "center"
@@ -44,6 +55,7 @@ export default function PaymentForm () {
     const [success, setsuccess] = useState(false);
     const [paymentFail, setPaymentFail] = useState(false);
     const [showGuide, setShowguide] = useState(true);
+    const [windowSize, setWindowSize] = useState(0);
     const stripe = useStripe();
     const elements = useElements();
 
@@ -56,6 +68,20 @@ export default function PaymentForm () {
 
         var cardCvc = elements.create('cardCvc');
         cardCvc.mount('#example3-card-cvc');*/
+
+        /*
+        let card = elements.getElement(CardNumberElement);*/
+
+        window.addEventListener('resize', function(event) {
+
+            if (window.innerWidth <= 500) {
+                setWindowSize(false);
+            }
+            else {
+                setWindowSize(true);
+            }
+        });
+
     }, [])
 
     const handlesubmit = async (event) => {
@@ -131,7 +157,7 @@ export default function PaymentForm () {
                     <div className="form-group">
                         <label htmlFor="card-number">Card Number</label>
                         <div className="form-input">
-                            <CardNumberElement options={cardNumberElementOptions}/>
+                            <CardNumberElement options={windowSize? cardNumberElementOptions:cardNumberElementOptionsMobile}/>
                         </div>
                     </div>
                     <div className="form-group-s">
