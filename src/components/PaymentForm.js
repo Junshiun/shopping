@@ -10,7 +10,7 @@ import { FaAngleDoubleRight } from "react-icons/fa"
 const cardNumberElementOptions = {
     style: {
       base: {
-        fontSize: '16px',
+        fontSize: '1em',
         lineHeight: "2em",
         letterSpacing: "0.5em",
         textAlign: "center"
@@ -22,7 +22,7 @@ const cardNumberElementOptionsMobile = {
     style: {
       base: {
         fontSize: '12px',
-        lineHeight: "2em",
+        lineHeight: "32px",
         letterSpacing: "0.5em",
         textAlign: "center"
       },
@@ -32,7 +32,7 @@ const cardNumberElementOptionsMobile = {
 const expiryElementOptions = {
     style: {
       base: {
-        fontSize: '16px',
+        fontSize: '1em',
         lineHeight: "2em",
         textAlign: "left"
       },
@@ -42,7 +42,7 @@ const expiryElementOptions = {
 const cvcElementOptions = {
     style: {
       base: {
-        fontSize: '16px',
+        fontSize: '1em',
         lineHeight: "2em",
         textAlign: "left"
       },

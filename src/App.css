@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@450&display=swap');
 
+:root {
+    --text-1: 0.9rem;
+    --text-2: 1.5rem;
+}
+
 * {
     font-family: 'Open Sans', sans-serif;
+    font-size: var(--text-1);
 }

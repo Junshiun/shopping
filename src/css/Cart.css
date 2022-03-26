@@ -8,15 +8,15 @@
     display: block;
     max-width: 95%;
     overflow: hidden;
-    margin-left: 1em;
+    margin-left: 1rem;
 }
 
 #cart-content .item-container {
     display: flex;
     width: 100%;
-    height: 15em;
-    margin-bottom: 3em;
-    padding: 1em 1em 1em 1em;
+    height: 15rem;
+    margin-bottom: 3rem;
+    padding: 1rem 1rem 1rem 1rem;
     /*box-shadow: 5px 5px 10px black;*/
 }
 
@@ -34,7 +34,7 @@
     display: flex;
     flex-direction: column;
     width: 50%;
-    padding: 0.5em 0.5em 0.5em 0.5em;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 .item-details > .item-info {
@@ -47,7 +47,7 @@
 .item-details .quantity-box {
     display: flex;
     justify-content: right;
-    margin-top: 1em;
+    margin-top: 1rem;
 }
 
 .quantity-box .minus, .quantity-box .plus {
@@ -57,7 +57,7 @@
 
 .quantity-box .quantity {
     text-align: center;
-    width: 2em;
+    width: 2rem;
     margin: 0 10px 0 10px;
 }
 
@@ -94,20 +94,19 @@ input::-webkit-inner-spin-button {
     display: flex;
     flex-direction: column;
     height: fit-content;
-    padding: 1em 1em 1em 1em;
+    padding: 1rem 1rem 1rem 1rem;
     justify-content: center;
     width: 100%;
 }
 
 .total {
     align-self: center;
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 }
 
 @media screen and (max-width:500px) {
     #cart {
-        font-size: 12px;
-        padding-top: calc(var(--header-height) + 20px);
+        padding-top: calc(var(--header-height) + 1rem);
     }
 
     .columnForMobile{
