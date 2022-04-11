@@ -25,8 +25,14 @@ const Context = ({children}) => {
             mode: 'cors',
             headers: {
                 'Access-Control-Allow-Origin':'*'
-        }
-        }).then(res=>res.json()).then(res => dispatch({type: FETCH_DATA, fetched: res, category: category_get}))
+            }
+        })
+        .then(res=>res.json())
+        /*.catch(() => {
+            fetch('http://fakestoreapi.com/products/' + ((category_get==="none")? "": "category/" + category_get)
+            ).then(res=>res.json()).then(res => dispatch({type: FETCH_DATA, fetched: res, category: category_get}))
+        })*/
+        .then(res => dispatch({type: FETCH_DATA, fetched: res, category: category_get}))
         
         setloading("done")
 
