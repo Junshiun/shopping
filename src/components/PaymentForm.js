@@ -133,8 +133,8 @@ export default function PaymentForm() {
       try {
         const { id } = paymentMethod;
         const response = await axios.post(
-          //"https://shopping-server-side.herokuapp.com/payment",
-          "http://localhost:4000/payment",
+          "https://shopping-server-side.herokuapp.com/payment",
+          // "http://localhost:4000/payment",
           {
             amount: total * 100,
             id,
