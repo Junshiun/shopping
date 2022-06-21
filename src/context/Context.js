@@ -1,54 +1,71 @@
-import { createContext, useContext , useReducer, useState, useEffect} from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useState,
+  useEffect,
+} from "react";
 import faker from "@faker-js/faker";
-import { CartReducer , FilterReducer, FETCH_DATA, FETCH_URL} from './Reducer';
-import { useSearchParams, useNavigate } from "react-router-dom";
+import {
+  CartReducer,
+  FilterReducer,
+  FETCH_DATA,
+  FETCH_URL,
+  CATEGORY_CHANGE,
+} from "./Reducer";
+import { useSearchParams, useNavigate, useParams } from "react-router-dom";
 
 export const Cart = createContext();
 faker.seed(99);
 
-const Context = ({children}) => {
+const Context = ({ children }) => {
+  const [loading, setloading] = useState(true);
 
+  const navigate = useNavigate();
 
-    const [loading, setloading] = useState("loading");
+  const [searchParams] = useSearchParams();
 
-    const navigate = useNavigate();
+  const fetch_data = async (category) => {
+    setloading(true);
 
-    const [searchParams] = useSearchParams();
+    dispatch({ type: CATEGORY_CHANGE, category: category });
 
-    const fetch_data = async() => {
+    // let category_get = searchParams.get("category");
 
-        let category_get = searchParams.get("category")
+    // category_get = category_get === null ? "none" : category_get;
 
-        category_get = (category_get===null)? "none": category_get;
+    let category_get = category === undefined ? "none" : category;
 
-        await fetch('https://fakestoreapi.com/products/' + ((category_get==="none")? "": "category/" + category_get), {
-            mode: 'cors',
-            headers: {
-                'Access-Control-Allow-Origin':'*'
-            }
-        })
-        .then(res=>res.json())
-        /*.catch(() => {
+    await fetch(
+      "https://fakestoreapi.com/products/" +
+        (category === undefined ? "" : "category/" + category),
+      {
+        mode: "cors",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    )
+      .then((res) => res.json())
+      /*.catch(() => {
             fetch('http://fakestoreapi.com/products/' + ((category_get==="none")? "": "category/" + category_get)
             ).then(res=>res.json()).then(res => dispatch({type: FETCH_DATA, fetched: res, category: category_get}))
         })*/
-        .then(res => dispatch({type: FETCH_DATA, fetched: res, category: category_get}))
-        
-        setloading("done")
+      .then((res) => dispatch({ type: FETCH_DATA, fetched: res }));
 
-        /*.catch(() => {
+    setloading(false);
+
+    /*.catch(() => {
             fetch('http://fakestoreapi.com/products/' + ((category_get==="none")? "": "category/" + category_get)
             ).then(res=>res.json()).then(res => dispatch({type: FETCH_DATA, fetched: res, category: category_get}))
         })*/
-    }
+  };
 
-    useEffect(() => {
+  useEffect(() => {
+    // fetch_data(undefined);
+  }, []);
 
-       fetch_data();
-
-    }, []);
-
-    /*const products = fetched_products.map((item) => {return {
+  /*const products = fetched_products.map((item) => {return {
         id: item.id,
         name: item.title,
         price: item.price,
@@ -59,7 +76,7 @@ const Context = ({children}) => {
         quantity: 1
     }})*/
 
-    /*const products = [...Array(20)].map(() => {return {
+  /*const products = [...Array(20)].map(() => {return {
         id: faker.datatype.uuid(),
         name: faker.commerce.productName(),
         price: faker.commerce.price(),
@@ -70,49 +87,53 @@ const Context = ({children}) => {
         quantity: 1
     }})*/
 
-    const [state, dispatch] = useReducer(CartReducer,{
-        products: [],
-        cart:  (JSON.parse(localStorage.getItem('cart'))===null)? []:JSON.parse(localStorage.getItem('cart')),
+  const [state, dispatch] = useReducer(CartReducer, {
+    products: [],
+    cart:
+      JSON.parse(localStorage.getItem("cart")) === null
+        ? []
+        : JSON.parse(localStorage.getItem("cart")),
 
-        //useState(localStorage.getItem('cart')),
-        //fetched_products: []
-        
-        status: {total: JSON.parse(localStorage.getItem('total')),
-                },
-        category: "none"
+    //useState(localStorage.getItem('cart')),
+    //fetched_products: []
+
+    status: { total: JSON.parse(localStorage.getItem("total")) },
+    category: "none",
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(state.cart));
+  }, [state.cart]);
+
+  useEffect(() => {
+    localStorage.setItem("total", JSON.stringify(state.status.total));
+  }, [state.status]);
+
+  useEffect(() => {
+    window.addEventListener("popstate", () => {
+      navigate(0);
     });
+  });
 
-    useEffect(()=>{
-        localStorage.setItem('cart', JSON.stringify(state.cart))
-    },[state.cart]);
+  const [filter, filterdispatch] = useReducer(FilterReducer, {
+    byprice: false,
+    bystocks: true,
+    bydelivery: false,
+    byratings: 1,
+    clear: false,
+  });
 
-    useEffect(()=>{
-        localStorage.setItem('total', JSON.stringify(state.status.total))
-    },[state.status]);
-
-    useEffect(() => {
-        window.addEventListener('popstate', ()=>{
-            navigate(0)
-        });
-    });
-
-    const [filter, filterdispatch] = useReducer(FilterReducer,{
-        byprice: false,
-        bystocks: true,
-        bydelivery: false,
-        byratings: 1,
-        clear: false
-    });
-
-    return (
-        <Cart.Provider value={{state, dispatch, filter, filterdispatch, loading}}>
-            {children}
-        </Cart.Provider>
-    )
-}
+  return (
+    <Cart.Provider
+      value={{ state, dispatch, filter, filterdispatch, loading, fetch_data }}
+    >
+      {children}
+    </Cart.Provider>
+  );
+};
 
 export default Context;
 
 export const CartState = () => {
-    return useContext(Cart);
+  return useContext(Cart);
 };
