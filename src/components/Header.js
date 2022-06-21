@@ -2,7 +2,7 @@ import "../css/Header.css";
 import { CgShoppingCart } from "react-icons/cg";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { BsSearch } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { CartState } from "../context/Context";
 import { REMOVE_FROM_CART } from "../context/Reducer";
@@ -26,6 +26,7 @@ const Header = () => {
 
   //console.log(location);
 
+  const [locate, setLocate] = useState(location);
   const updateCartbox = () => {
     if (cartbox === "hide") {
       setcartbox("show");
@@ -52,11 +53,12 @@ const Header = () => {
     document.addEventListener("mousedown", closeOpenMenus);
   }, []);
 
+  useEffect(() => {
+    setLocate(location);
+  }, [location]);
+
   function handleCategories(e) {
-    if (e.target.getAttribute("value") !== category) {
-      history("?category=" + e.target.getAttribute("value"));
-      history(0);
-    }
+    history("/category/" + e.target.getAttribute("value"));
   }
 
   function handleClass() {
@@ -69,7 +71,6 @@ const Header = () => {
         id="title"
         onClick={() => {
           history("/");
-          history(0);
         }}
       >
         Shop
@@ -78,10 +79,10 @@ const Header = () => {
         {/* {location === "/shopping" ||
         location === "/shopping/" ||
         location === "shopping"  */}
-        {location === "/" ? (
+        {locate === "/" || locate.includes("category") ? (
           <div onClick={handleClass} id="categories" ref={menu}>
             <div className="categories-main">
-              {category === "none" ? "Categories" : category}
+              {category === undefined ? "Categories" : category}
             </div>
             <div id="options" className="options hide">
               <a
