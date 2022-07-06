@@ -21,7 +21,7 @@ function App() {
             exact
             element={<StripeContainer />}
           ></Route>
-          {/* <Route path="*" exact element={<Navigate to="/" />} /> */}
+          <Route path="*" exact element={<Navigate to="/" />} />
         </Routes>
         <Footer />
       </Contex>
